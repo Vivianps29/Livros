@@ -1,0 +1,276 @@
+/* Configurações Gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --cor-primaria: #6c5ce7;
+    --cor-primaria-hover: #5b4cd8;
+    --cor-fundo: #f4f6f9;
+    --cor-card: #ffffff;
+    --cor-texto: #2d3436;
+    --cor-texto-secundario: #636e72;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+span {
+    color: var(--cor-primaria);
+}
+
+/* Navbar Fixa no Topo */
+header {
+    background-color: #2d3436;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+}
+
+.logo {
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+    font-size: 0.95rem;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--cor-primaria);
+}
+
+/* Botão de Destaque na Navbar */
+.btn-nav {
+    background-color: var(--cor-primaria);
+    color: white !important;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: bold !important;
+    margin-left: 15px;
+}
+
+.btn-nav:hover {
+    background-color: var(--cor-primaria-hover);
+}
+
+/* Container de Conteúdo */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Elementos de Seção */
+section {
+    background: var(--cor-card);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #dfe6e9;
+    padding-bottom: 10px;
+    color: #2d3436;
+}
+
+/* Estrutura do Formulário (Página de Cadastro) */
+.page-cadastro-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 20px 60px 20px;
+}
+
+.secao-cadastro {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 0;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.input-group input, .input-group select, .input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fafafa;
+}
+
+.input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    background-color: #fff;
+}
+
+.btn-salvar {
+    background-color: var(--cor-primaria);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.btn-salvar:hover {
+    background-color: var(--cor-primaria-hover);
+}
+
+/* Filtros e Controles (Busca/Ordenação) */
+.secao-controle {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.busca-box {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+}
+
+.busca-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cor-texto-secundario);
+}
+
+.busca-box input {
+    width: 100%;
+    padding: 10px 10px 10px 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.ordenacao-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ordenacao-box select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+}
+
+/* Cards de Livros */
+.grid-livros {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.livro-card {
+    background: #f8f9fa;
+    border-left: 5px solid var(--cor-primaria);
+    padding: 20px;
+    border-radius: 0 8px 8px 0;
+    position: relative;
+}
+
+.livro-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.livro-estrelas {
+    color: #f1c40f;
+}
+
+.livro-opiniao {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.livro-detalhes {
+    font-size: 0.85rem;
+    color: var(--cor-texto-secundario);
+    font-style: italic;
+}
+
+.btn-excluir {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+}
+
+.btn-excluir:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--cor-texto-secundario);
+    font-size: 0.9rem;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .navbar { flex-direction: column; gap: 10px; text-align: center;}
+    .btn-nav { margin-left: 0; margin-top: 5px;}
+    .secao-controle { flex-direction: column; align-items: stretch; }
+}

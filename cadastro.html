@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Livro | Diário de Leituras</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="body-cadastro">
+
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html" style="color: white; text-decoration: none;"><i class="fas fa-book-reader"></i> Meu Diário de <span>Leituras</span></a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Voltar para a Estante</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-cadastro-container">
+        <section class="secao-cadastro">
+            <h2><i class="fas fa-plus-circle"></i> Registrar Novo Livro</h2>
+            <form id="form-livro">
+                <div class="input-group">
+                    <label for="titulo">Nome do Livro</label>
+                    <input type="text" id="titulo" placeholder="Ex: O Alquimista" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="avaliacao">Sua Avaliação (Estrelas)</label>
+                    <select id="avaliacao" required>
+                        <option value="5">⭐⭐⭐⭐⭐ (Excelente)</option>
+                        <option value="4">⭐⭐⭐⭐ (Muito Bom)</option>
+                        <option value="3">⭐⭐⭐ (Bom)</option>
+                        <option value="2">⭐⭐ (Regular)</option>
+                        <option value="1">⭐ (Ruim)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="opiniao">O que você achou do livro?</label>
+                    <textarea id="opiniao" rows="4" placeholder="Escreva sua resenha ou opinião sobre a leitura..." required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="detalhes">Detalhes adicionais (Opcional)</label>
+                    <input type="text" id="detalhes" placeholder="Ex: Li nas férias / Emprestado por João">
+                </div>
+
+                <button type="submit" class="btn-salvar">Salvar no Diário <i class="fas fa-bookmark"></i></button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Meu Diário de Leituras Acadêmico.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

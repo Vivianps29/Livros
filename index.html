@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Livros | Diário de Leituras</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo"><i class="fas fa-book-reader"></i> Meu Diário de <span>Leituras</span></div>
+            <ul class="nav-links">
+                <li><a href="cadastro.html" class="btn-nav"><i class="fas fa-plus"></i> Adicionar Livro</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container" style="margin-top: 100px;">
+        <section class="secao-controle">
+            <div class="busca-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="busca" placeholder="Pesquisar por nome do livro...">
+            </div>
+
+            <div class="ordenacao-box">
+                <label for="ordenar"><i class="fas fa-sort"></i> Ordenar por:</label>
+                <select id="ordenar">
+                    <option value="recente">Mais recentes primeiro</option>
+                    <option value="melhores">Melhor avaliação (⭐⭐⭐⭐⭐)</option>
+                    <option value="piores">Menor avaliação (⭐)</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="secao-lista">
+            <h2><i class="fas fa-list"></i> Estante de Leituras (<span id="contador-livros">0</span>)</h2>
+            <div id="lista-livros" class="grid-livros">
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Meu Diário de Leituras Acadêmico.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
