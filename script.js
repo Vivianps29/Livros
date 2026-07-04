@@ -1,13 +1,27 @@
-// Carrega os livros do LocalStorage (banco de dados do navegador)
-let livros = JSON.parse(localStorage.getItem('meus_livros')) || [];
+function escapeHTML(string) {
+    if (!string) return '';
+    return string
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
-// Elementos da Página Inicial (Listagem)
+// Carrega os livros do LocalStorage com proteção contra erros
+let livros = [];
+try {
+    livros = JSON.parse(localStorage.getItem('meus_livros')) || [];
+} catch (error) {
+    console.error("Erro ao processar dados corrompidos do localStorage. Inicializando vazio.", error);
+    livros = [];
+}
+
+// Elementos do DOM
 const listaLivrosElement = document.getElementById('lista-livros');
 const campoBusca = document.getElementById('busca');
 const campoOrdenar = document.getElementById('ordenar');
 const contadorLivros = document.getElementById('contador-livros');
-
-// Elemento da Página de Cadastro
 const formLivro = document.getElementById('form-livro');
 
 // ==========================================================================
@@ -42,26 +56,30 @@ function renderizarLivros() {
     }
 
     // Desenha os cards na tela
-    livrosFiltrados.forEach(livro => {
-        const estrelasText = '⭐'.repeat(livro.avaliacao);
+    const cardsHtml = livrosFiltrados.map(livro => {
+        const estrelasText = '⭐'.repeat(Number(livro.avaliacao) || 0);
         
-        const cardHtml = `
+        return `
             <div class="livro-card">
                 <div class="livro-header">
-                    <h3>${livro.titulo}</h3>
+                    <h3>${escapeHTML(livro.titulo)}</h3>
                     <span class="livro-estrelas">${estrelasText}</span>
                 </div>
-                <p class="livro-opiniao">"${livro.opiniao}"</p>
-                ${livro.detalhes ? `<p class="livro-detalhes">📌 Nota extra: ${livro.detalhes}</p>` : ''}
-                <button class="btn-excluir" onclick="excluirLivro(${livro.id})"><i class="fas fa-trash"></i> Excluir</button>
+                <p class="livro-opiniao">"${escapeHTML(livro.opiniao)}"</p>
+                ${livro.detalhes ? `<p class="livro-detalhes">📌 Nota extra: ${escapeHTML(livro.detalhes)}</p>` : ''}
+                <button class="btn-excluir" onclick="excluirLivro(${livro.id})">
+                    <i class="fas fa-trash"></i> Excluir
+                </button>
             </div>
         `;
-        listaLivrosElement.innerHTML += cardHtml;
-    });
+    }).join('');
+
+    // Uma única alteração atômica no DOM (Rápido e performático)
+    listaLivrosElement.innerHTML = cardsHtml;
 }
 
 // Função para Deletar Livro
-function excluirLivro(idLivro) {
+window.excluirLivro = function(idLivro) {
     livros = livros.filter(livro => livro.id !== idLivro);
     localStorage.setItem('meus_livros', JSON.stringify(livros));
     renderizarLivros();
