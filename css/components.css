@@ -1,74 +1,3 @@
-/* Configurações Gerais */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-:root {
-    --cor-primaria: #6c5ce7;
-    --cor-primaria-hover: #5b4cd8;
-    --cor-fundo: #f4f6f9;
-    --cor-card: #ffffff;
-    --cor-texto: #2d3436;
-    --cor-texto-secundario: #636e72;
-}
-
-body {
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto);
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-span {
-    color: var(--cor-primaria);
-}
-
-/* Navbar Fixa no Topo */
-header {
-    background-color: #2d3436;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 15px 20px;
-}
-
-.logo {
-    color: white;
-    font-size: 1.3rem;
-    font-weight: bold;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    align-items: center;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: 0.3s;
-    font-size: 0.95rem;
-}
-
-.nav-links a:hover, .nav-links a.active {
-    color: var(--cor-primaria);
-}
-
 /* Botão de Destaque na Navbar */
 .btn-nav {
     background-color: var(--cor-primaria);
@@ -81,14 +10,6 @@ header {
 
 .btn-nav:hover {
     background-color: var(--cor-primaria-hover);
-}
-
-/* Container de Conteúdo */
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    margin-top: 100px;
 }
 
 /* Elementos de Seção */
@@ -108,16 +29,7 @@ section h2 {
     color: #2d3436;
 }
 
-/* Estrutura do Formulário (Página de Cadastro) */
-.page-cadastro-container {
-    min-height: 100vh;
-    margin-top: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding:20px;
-}
-
+/* Formulário (Página de Cadastro) */
 .secao-cadastro {
     width: 100%;
     max-width: 600px;
@@ -262,17 +174,8 @@ section h2 {
     text-decoration: underline;
 }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 20px;
-    color: var(--cor-texto-secundario);
-    font-size: 0.9rem;
-}
-
-/* Responsividade */
+/* Responsividade de Componentes */
 @media (max-width: 600px) {
-    .navbar { flex-direction: column; gap: 10px; text-align: center;}
-    .btn-nav { margin-left: 0; margin-top: 5px;}
+    .btn-nav { margin-left: 0; margin-top: 5px; }
     .secao-controle { flex-direction: column; align-items: stretch; }
 }
