@@ -1,3 +1,5 @@
+// 1. FUNÇÕES UTILITÁRIAS
+
 function escapeHTML(string) {
     if (!string) return '';
     return string
@@ -8,6 +10,7 @@ function escapeHTML(string) {
         .replace(/'/g, "&#039;");
 }
 
+// 2. PERSISTÊNCIA DE DADOS (localStorage)
 // Carrega os livros do LocalStorage com proteção contra erros
 let livros = [];
 try {
@@ -17,28 +20,33 @@ try {
     livros = [];
 }
 
-// Elementos do DOM
+// Salva o array de livros atual no LocalStorage
+// (centralizada aqui para não ficar repetida em vários lugares do código)
+function salvarLivros() {
+    localStorage.setItem('meus_livros', JSON.stringify(livros));
+}
+
+// 3. ELEMENTOS DO DOM
 const listaLivrosElement = document.getElementById('lista-livros');
 const campoBusca = document.getElementById('busca');
 const campoOrdenar = document.getElementById('ordenar');
 const contadorLivros = document.getElementById('contador-livros');
 const formLivro = document.getElementById('form-livro');
 
-// ==========================================================================
-// LÓGICA DA PÁGINA INICIAL (Apenas se os elementos existirem na tela)
-// ==========================================================================
+// 4. LÓGICA DA PÁGINA INICIAL — BUSCA, ORDENAÇÃO E RENDERIZAÇÃO
+//    (Apenas se os elementos existirem na tela)
 function renderizarLivros() {
     if (!listaLivrosElement) return; // Se não estiver na página inicial, interrompe
 
     const termoBusca = campoBusca.value.toLowerCase();
     const criterioOrdenacao = campoOrdenar.value;
 
-    // 1. Filtrar por Busca
-    let livrosFiltrados = livros.filter(livro => 
+    // Filtrar por Busca (em tempo real)
+    let livrosFiltrados = livros.filter(livro =>
         livro.titulo.toLowerCase().includes(termoBusca)
     );
 
-    // 2. Filtrar por Ordenação
+    // Ordenação
     if (criterioOrdenacao === 'melhores') {
         livrosFiltrados.sort((a, b) => b.avaliacao - a.avaliacao);
     } else if (criterioOrdenacao === 'piores') {
@@ -58,7 +66,7 @@ function renderizarLivros() {
     // Desenha os cards na tela
     const cardsHtml = livrosFiltrados.map(livro => {
         const estrelasText = '⭐'.repeat(Number(livro.avaliacao) || 0);
-        
+
         return `
             <div class="livro-card">
                 <div class="livro-header">
@@ -81,20 +89,18 @@ function renderizarLivros() {
 // Função para Deletar Livro
 window.excluirLivro = function(idLivro) {
     livros = livros.filter(livro => livro.id !== idLivro);
-    localStorage.setItem('meus_livros', JSON.stringify(livros));
+    salvarLivros();
     renderizarLivros();
 }
 
-// Ativa escutadores de busca apenas se estiver na Home
+// Ativa escutadores de busca e ordenação apenas se estiver na Home
 if (campoBusca && campoOrdenar) {
     campoBusca.addEventListener('input', renderizarLivros);
     campoOrdenar.addEventListener('change', renderizarLivros);
     renderizarLivros(); // Roda a primeira listagem
 }
 
-// ==========================================================================
-// LÓGICA DA PÁGINA DE CADASTRO
-// ==========================================================================
+// 5. LÓGICA DA PÁGINA DE CADASTRO — GERAÇÃO DE ID ÚNICO E SALVAMENTO
 if (formLivro) {
     formLivro.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -115,7 +121,7 @@ if (formLivro) {
 
         // Adiciona no array global e salva no LocalStorage do Navegador
         livros.push(novoLivro);
-        localStorage.setItem('meus_livros', JSON.stringify(livros));
+        salvarLivros();
 
         // Redireciona o usuário automaticamente de volta para a Estante Inicial
         window.location.href = 'index.html';
