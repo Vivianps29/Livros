@@ -1,3 +1,5 @@
+Alunos: Maria Luiza Dias, Vivian Petrille, Luiz Gabriel e Ianna Flayser
+
 Contexto:
 Meu Diário de Leituras é uma aplicação web front-end (HTML, CSS e JavaScript) que funciona como um diário pessoal de leitura. A ferramenta permite que o usuário registre os livros que leu, atribua uma avaliação em estrelas (sendo elas de 1 a 5), escreva uma opinião sobre a obra e consulte essas informações posteriormente em formato de estante virtual, com recurso de busca e ordenação.
 
